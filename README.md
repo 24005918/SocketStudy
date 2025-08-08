@@ -60,6 +60,19 @@ The program is ideal for teaching the basics of socket programming, illustrating
 
 ## Program :
 
+
+
+## server.py
+~~~
+import socket
+s = socket.socket()
+s.connect(('localhost', 8000))
+data = s.recv(1024).decode()
+print("Received from server:", data)
+s.send("Time received successfully.".encode())
+s.close()
+~~~
+
  ## Client.py
 ~~~
 import socket
@@ -79,20 +92,10 @@ if ack:
 c.close()
 
 ~~~
-
-## server.py
-~~~
-import socket
-s = socket.socket()
-s.connect(('localhost', 8000))
-data = s.recv(1024).decode()
-print("Received from server:", data)
-s.send("Time received successfully.".encode())
-s.close()
-~~~
-
 ## Output :
-<img width="1485" height="203" alt="{BEE3C5F1-3FB5-466F-A979-5A75EF9E3768}" src="https://github.com/user-attachments/assets/bd4bb4ab-4f3c-44d3-8cd2-d4c92f28a399" />
+<img width="1496" height="1072" alt="{B17647F9-DC08-43E3-8520-56DF760DEEA1}" src="https://github.com/user-attachments/assets/af8e55ee-3569-4d91-a38f-bd1469c37d47" />
+<img width="1484" height="1020" alt="{F1ED5D39-0A04-42C3-8B45-E5283E9F238B}" src="https://github.com/user-attachments/assets/9e9aa873-5ce0-495c-aef3-25110bf872f9" />
+
 
 
 
