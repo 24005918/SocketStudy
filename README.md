@@ -1,58 +1,112 @@
-# Ex.No:1a  			Study of Socket Programming
+Ex.No:1a – Study of Socket Programming
+Aim:
+To perform a study on Socket Programming using Python.
 
-## Aim: 
-To perform a study on Socket Programming
-## Introduction:
+Introduction:
+Socket programming is a crucial aspect of network communication, allowing data exchange between computers over a network. It forms the backbone of various networked applications, enabling communication between clients and servers. This study explores the fundamental concepts of socket programming, its use cases, and provides a practical example to demonstrate its implementation using Python.
 
- 	Socket programming is a crucial aspect of network communication, allowing for data exchange between computers over a network. It forms the backbone of various networked applications, enabling communication between clients and servers. This study explores the fundamental concepts of socket programming, its use cases, and provides a practical example to demonstrate its implementation.
-## Understanding Socket Programming:
-	Socket programming involves the use of sockets, which serve as endpoints for communication. A socket is identified by an IP address and a port number, and it facilitates data transfer between a client and a server. The two main types of sockets are Stream Sockets, which provide a reliable, connection-oriented communication, and Datagram Sockets, which are connectionless and suitable for scenarios where reliability is less critical.
-## Key Concepts in Socket Programming:
-1.Sockets
-•	A socket is a software representation of a communication endpoint in a network.
-•	It is identified by an IP address and a port number.
-•	Sockets can be classified into two main types: Stream Sockets and Datagram Sockets.
-•	Stream Sockets provide a reliable, connection-oriented communication, while Datagram Sockets are connectionless and operate in a best-effort mode.
+Understanding Socket Programming:
+Socket programming involves the use of sockets, which serve as endpoints for communication. A socket is identified by an IP address and a port number and facilitates data transfer between a client and a server. The two main types of sockets are:
+
+Stream Sockets (TCP) – reliable, connection-oriented.
+
+Datagram Sockets (UDP) – connectionless, faster but less reliable.
+
+Key Concepts in Socket Programming:
+1. Sockets
+A socket is a software representation of a communication endpoint.
+
+It is identified by an IP address and a port number.
+
+Common types:
+
+Stream Sockets (TCP) – reliable, used for most applications.
+
+Datagram Sockets (UDP) – used where speed is preferred over reliability.
 
 2. Client-Server Model
+Follows a two-part architecture:
 
-•	Socket programming typically follows the client-server model.
-•	The server listens for incoming connections from clients, while clients initiate connections to the server.
-•	Servers are passive, waiting for connection requests, and clients are active, initiating communication.
+Server: Listens for incoming client connections.
 
-3, TCP/IP Protocol:
+Client: Initiates a connection to the server.
 
-•	Transmission Control Protocol (TCP) and Internet Protocol (IP) are the foundational protocols for socket programming.
-•	TCP provides reliable, connection-oriented communication, ensuring data integrity and order.
-•	IP facilitates the routing of data between devices in a network.
+Server is passive, waiting for requests; client is active.
 
-4.Basic Socket Functions:
+3. TCP/IP Protocol
+TCP ensures reliable, ordered data transmission.
 
-•	Socket programming involves a set of functions provided by the operating system or programming language to create, bind, listen, accept, connect, send, and receive data through sockets.
-•	Examples of functions include socket(), bind(), listen(), accept(), connect(), send(), and recv().
+IP handles addressing and routing between hosts.
 
-## Server-Side Operations:
+4. Basic Socket Functions in Python
+socket(): Creates a new socket.
 
-•	Servers create a socket using socket() and bind it to a specific IP address and port using bind().
-•	They then listen for incoming connections with listen() and accept connections with accept().
-•	Once a connection is establi
-•	shed, servers can send and receive data using send() and recv().
+bind(): Binds socket to IP and port.
 
-## Client –Server Operations
+listen(): Listens for incoming connections.
 
-Clients create a socket using socket() and connect to a server using connect().
-After establishing a connection, clients can send and receive data using send() and recv().
+accept(): Accepts a connection.
 
-## Use Cases of Socket Programming:
-Socket programming finds applications in various domains, including web development, file transfer protocols, online gaming, and real-time communication. It is the foundation for protocols like HTTP, FTP, and SMTP, which power the internet. Socket programming enables the development of both server and client applications, facilitating the exchange of information between devices in a networked environment.
-## Example Use Cases:
+connect(): Client uses this to connect to a server.
 
-1.	Web servers: Web servers use socket programming to handle incoming HTTP requests from clients, serving web pages and content.
-2.	Chat Application: Instant messaging and chat applications use sockets to enable real-time communication between users.
-3.	File Transfer Protocol: Protocols like FTP (File Transfer Protocol) utilize socket programming for transferring files between a client and a server.
-4.	Networked Games: Online multiplayer games rely on socket programming to facilitate communication between game clients and servers.
-5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
+send() and recv(): Used to send and receive data.
 
+Server-Side Operations:
+Create socket → Bind → Listen → Accept connection.
 
-## Result:
-Thus the study of Socket Programming Completed Successfully
+After connection: Use send() and recv() for communication.
+
+Client-Side Operations:
+Create socket → Connect to server using IP and port.
+
+After connection: Use send() and recv().
+
+Use Cases of Socket Programming:
+Web Servers: Handling HTTP requests.
+
+Chat Applications: Real-time messaging.
+
+File Transfer Protocol (FTP): File transfers.
+
+Online Gaming: Real-time player communication.
+
+Remote Procedure Call (RPC): Code execution on remote systems.
+
+Example Program
+Server Code in Python:
+python
+Copy
+Edit
+# server.py
+import socket
+from datetime import datetime
+
+# Create a socket object
+s = socket.socket()
+
+# Bind to localhost on port 8000
+s.bind(('localhost', 8000))
+
+# Listen for incoming connections
+s.listen(5)
+
+# Accept a client connection
+c, addr = s.accept()
+print("Client Address:", addr)
+
+# Get current date and time
+now = datetime.now()
+
+# Send date and time to client
+c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
+
+# Receive acknowledgment from client
+ack = c.recv(1024).decode()
+if ack:
+    print(ack)
+
+# Close connection
+c.close()
+Result:
+Thus, the study of Socket Programming using Python was completed successfully, and a server program was implemented to send the current date and time to the client.
+
